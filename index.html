@@ -1,11 +1,20 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GTA Clip Desk</title><link rel="stylesheet" href="style.css"></head><body><main>
-<nav><a href="index.html">Home</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></nav>
-<h1>GTA Clip Desk</h1>
-<p class="muted">A personal desktop tool for short-form gaming clips.</p>
-<p>GTA Clip Desk is a desktop tool run by one independent creator. It cuts short vertical clips from gameplay livestreams,
-adds captions and creator credit, and uploads the finished clips to the creator's own TikTok account as drafts,
-so the creator can review and publish them in the TikTok app.</p>
-<p>The tool is not a public service, has no user sign-up, and is not affiliated with TikTok, Rockstar Games or any streamer.</p>
-<p>Contact: <a href="mailto:CONTACT_EMAIL">hoangnguyenai111@gmail.com</a></p>
-</main></body></html>
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex">
+<title>Sign-in result</title><link rel="stylesheet" href="../style.css">
+<style>textarea{width:100%;height:110px;font:14px/1.4 Consolas,monospace;padding:8px;box-sizing:border-box;background:transparent;color:inherit;border:1px solid var(--muted);border-radius:6px}
+button{margin-top:10px;padding:8px 16px;border:0;border-radius:6px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}</style>
+</head><body><main>
+<h1>GTA Clip Desk sign-in</h1>
+<p id="msg" class="muted">Reading the sign-in result…</p>
+<textarea id="out" readonly></textarea>
+<button id="copy" type="button">Copy</button>
+<p class="muted">Paste this into the GTA Clip Desk tool on your computer. The code expires in a few minutes and only works together with a secret kept on that computer. Nothing on this page is stored or sent anywhere.</p>
+</main><script>
+const q = new URLSearchParams(location.search);
+const out = document.getElementById('out'), msg = document.getElementById('msg');
+if (q.get('code')) { msg.textContent = 'Signed in. Copy the text below:'; out.value = location.href; }
+else if (q.get('error')) { msg.textContent = 'Sign-in failed: ' + q.get('error') + ' ' + (q.get('error_description') || ''); out.value = location.href; }
+else { msg.textContent = 'No sign-in result in this address.'; }
+document.getElementById('copy').onclick = () => { out.select(); navigator.clipboard.writeText(out.value).catch(() => document.execCommand('copy')); };
+history.replaceState(null, '', location.pathname);
+</script></body></html>
